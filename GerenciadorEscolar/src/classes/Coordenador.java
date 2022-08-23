@@ -26,14 +26,16 @@ public class Coordenador {
 		this.cpf = cpf;
 	}
 	
-	public void criaProfessor(String nome, String cpf, String area, String titulacao) {
+	public Professor criaProfessor(String nome, String cpf, String area, String titulacao) {
+		Professor prof = new Professor(nome, cpf, area, titulacao);
 		System.out.println("Entrou no metodo criar professor");
-		return;
+		return prof;
 	}
 	
-	public void criaAluno(String nome, String cpf, String registroEscolar) {
+	public Aluno criaAluno(String nome, String cpf, String registroEscolar) {
+		Aluno al = new Aluno(nome, cpf, registroEscolar);
 		System.out.println("Entrou no metodo criar aluno na classe coordenador!");
-		return;
+		return al;
 	}
 	
 	public void criaPlanoPedagogico(int cargaHoraria) {
@@ -45,5 +47,15 @@ public class Coordenador {
 		System.out.println("Entrou no metodo criar disciplina na classe coordenador");
 		return;
 	}
+	
+	public Aluno removeAluno(String cpf) {
+		System.out.println("Entrou no metodo remover aluno na classe coordenador");
+		return null;
+	}
 
+	
+	public Professor removeProfessor(String cpf) {
+		System.out.println("Entrou no metodo remover professor na classe coordenador");
+		return null;
+	}
 }

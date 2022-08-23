@@ -8,9 +8,9 @@ public class Professor {
 	private String cpf;
 	private String area;
 	private ArrayList<Disciplina> disciplinasMinistradas;
-	protected String titulacao;
+	private String titulacao;
 	
-	public Professor(String nome, String cpf, String area, String titulacao, Date dataNascimento) {
+	public Professor(String nome, String cpf, String area, String titulacao) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.area = area;
@@ -71,5 +71,25 @@ public class Professor {
 	public void criarListaDePresença(ArrayList<Aluno> alunos) {
 		System.out.println("Entrou no metodo lista de presenca da classe professor");
 		return;
+	}
+	
+	public void fazerComentarioPublico(String comentario, String nomeDisciplina) {
+		System.out.println("Entrou no metodo fazer comentario da classe professor");
+		return;
+	}
+	
+	public void consultarTurma() {
+		System.out.println("Entrou no metodo consultar turma da classe professor");
+		return;
+	}
+	
+	public void comentarioPrivado(String nomeDisciplina, String deQuem, String paraQuem, String Mensagem) {
+		System.out.println("Entrou no metodo comentario privado na classe professor");
+		return;
+	}
+	
+	public Disciplina consultaDisciplina(String nome) {
+		System.out.println("Entrou no metodo consulta disciplina na classe professor");
+		return null;
 	}
 }

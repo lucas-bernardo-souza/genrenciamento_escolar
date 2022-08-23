@@ -40,6 +40,7 @@ public class Aluno {
 	}
 	
 	public ArrayList<Disciplina> getDisciplinasMatriculadas(){
+		System.out.println("Entrou no metodo get disciplinas (consultar disciplinas matriculadas) da classe aluno");
 		return disciplinasMatriculadas;
 	}
 	
