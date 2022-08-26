@@ -55,4 +55,20 @@ public class Aluno {
 		return;
 	}
 	
+        
+	public void consultarAtividade() {
+		System.out.println("Entrou no método consultar atividades da classe aluno");
+		return;
+	}
+        
+	public void consultarNota() {
+		System.out.println("Entrou no método consultar notas da classe aluno");
+		return;
+	}
+
+	public void consultarFalta() {
+		System.out.println("Entrou no método consultar faltas da classe aluno");
+		return;
+	}
+	
 }
