@@ -13,24 +13,24 @@ import classes.PlanoPedagogico;
 import classes.Professor;
 
 public class Controlador {
-	private Coordenador coordenador;
-	private Professor professor;
-	private Aluno aluno;
-        private ArrayList<Disciplina> disciplinas;
+	private ControladorCoordenador ctrlCoordenador;
+	private ControladorProfessor ctrlProfessor;
+	private ControladorAluno ctrlAluno;
+//    private ArrayList<Disciplina> disciplinas;
         
         public Controlador(Coordenador coordenador) {
-            this.coordenador = coordenador;
+        	ctrlCoordenador = new ControladorCoordenador(coordenador);
         }
 	
         public Controlador(Coordenador coordenador, Professor professor) {
-            this.coordenador = coordenador;
-            this.professor = professor;
+            ctrlCoordenador = new ControladorCoordenador(coordenador);
+            ctrlProfessor = new ControladorProfessor(professor);
         }
         
         public Controlador(Coordenador coordenador, Professor professor, Aluno aluno) {
-            this.coordenador = coordenador;
-            this.professor = professor;
-            this.aluno = aluno;
+            ctrlCoordenador = new ControladorCoordenador(coordenador);
+            ctrlProfessor = new ControladorProfessor(professor);
+            ctrlAluno = new ControladorAluno(aluno);
         }
         /*
 	public Controlador(Coordenador coordenador) {
@@ -45,75 +45,75 @@ public class Controlador {
 		this.aluno = aluno;
 	}
 	*/
-	public void cadastrarAluno(String nome, String cpf, String registroEscolar) {
-		Aluno alu = coordenador.criaAluno(nome, cpf, registroEscolar);
+	public Aluno cadastrarAluno(String nome, String cpf, String registroEscolar) {
+		return ctrlCoordenador.cadastrarAluno(nome, cpf, registroEscolar);
 	}
 	
-	public void cadastrarProfessor(String nome, String cpf, String area, String titulacao) {
-		Professor prof = coordenador.criaProfessor(nome, cpf, area, titulacao);
+	public Professor cadastrarProfessor(String nome, String cpf, String area, String titulacao) {
+		return ctrlCoordenador.cadastrarProfessor(nome, cpf, area, titulacao);
 	}
 	
 	public void cadastrarDisciplina(String nome, Professor professor, PlanoPedagogico planoPedagogico) {
-		coordenador.criaDisciplina(nome, professor, planoPedagogico);
+		ctrlCoordenador.cadastrarDisciplina(nome, professor, planoPedagogico);
 	}
 	
 	public void cadastrarPlanoPedagogico(int cargahoraria) {
-		coordenador.criaPlanoPedagogico(cargahoraria);
+		ctrlCoordenador.cadastrarPlanoPedagogico(cargahoraria);
 	}
 	
-	public void removerAluno(String cpf) {
-		coordenador.removeAluno(cpf);
+	public void removeAluno(String cpf) {
+		ctrlCoordenador.removeAluno(cpf);
 	}
 	
-	public void removerProfessor(String cpf) {
-		coordenador.removeProfessor(cpf);
+	public void removeProfessor(String cpf) {
+		ctrlCoordenador.removeProfessor(cpf);
 	}
 	
-	public void registrarAula(Date data, String assuntoDaAula, String descricao) {
-		Aula al = professor.registrarAula(data, assuntoDaAula, descricao);
+	public Aula registrarAula(Date data, String assuntoDaAula, String descricao) {
+		return ctrlProfessor.registrarAula(data, assuntoDaAula, descricao);
 	}
 	
-	public void criarAtivida(Date dataAtribuicao, Date dataEntrega, String descricao) {
-		Atividade atv = professor.criarAtivida(dataAtribuicao, dataEntrega, descricao);
+	public Atividade criarAtivida(Date dataAtribuicao, Date dataEntrega, String descricao) {
+		return ctrlProfessor.criarAtivida(dataAtribuicao, dataEntrega, descricao);
 	}
 	
-	public void criarListaDePresença(ArrayList<Aluno> alunos) {
-		professor.criarListaDePresença(alunos);
+	public void criarListaDePresenca(ArrayList<Aluno> alunos) {
+		ctrlProfessor.criarListaDePresenca(alunos);
 	}
 	
 	public void fazerComentarioPublico(String comentario, String nomeDisciplina) {
-		professor.fazerComentarioPublico(comentario, nomeDisciplina);
+		ctrlProfessor.fazerComentarioPublico(comentario, nomeDisciplina);
 	}
 	
 	public void comentarioPrivado(String nomeDisciplina, String deQuem, String paraQuem, String Mensagem) {
-		professor.comentarioPrivado(nomeDisciplina, deQuem, paraQuem, Mensagem);
+		ctrlProfessor.comentarioPrivado(nomeDisciplina, deQuem, paraQuem, Mensagem);
 	}
 	
-	public void consultaDisciplina(String nome) {
-		Disciplina disc = professor.consultaDisciplina(nome);
+	public Disciplina consultaDisciplina(String nome) {
+		return ctrlProfessor.consultaDisciplina(nome);
 	}
 	
 	public void inscreverEmDisciplina(Disciplina disc) {
-		aluno.matricularEmDisciplina(disc);
+		ctrlAluno.inscreverEmDisciplina(disc);
 	}
 	
 	public void concluirAtividade() {
-		aluno.concluirAtividade();
+		ctrlAluno.concluirAtividade();
 	}
 	
 	public void consultarDisciplinasMatriculadas(){
-		aluno.getDisciplinasMatriculadas();
+		ctrlAluno.consultarDisciplinasMatriculadas();
 	}
 
-        public void consultarAtividades() {
-                aluno.consultarAtividade();
-        }
+    public void consultarAtividades() {
+        ctrlAluno.consultarAtividades();
+    }
 
-        public void consultarNotas() {
-                aluno.consultarNota();
-        }
+    public void consultarNotas() {
+        ctrlAluno.consultarNotas();
+    }
 
-        public void consultarFaltas() {
-                aluno.consultarFalta();
-        }
+    public void consultarFaltas() {
+        ctrlAluno.consultarFaltas();
+    }
 }

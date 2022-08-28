@@ -52,10 +52,10 @@ public class Interface {
 				controlador.cadastrarDisciplina(null, null, null);
 				break;
 			case 5:
-				controlador.removerAluno(null);
+				controlador.removeAluno(null);
 				break;
 			case 6:
-				controlador.removerProfessor(null);
+				controlador.removeProfessor(null);
 				break;
 			}
 		}
@@ -87,7 +87,7 @@ public class Interface {
 				controlador.criarAtivida(null, null, null);
 				break;
 			case 3:
-				controlador.criarListaDePresença(null);
+				controlador.criarListaDePresenca(null);
 				break;
 			case 4:
 				controlador.fazerComentarioPublico(null, null);

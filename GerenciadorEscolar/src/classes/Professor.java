@@ -68,7 +68,7 @@ public class Professor {
 		return null;
 	}
 	
-	public void criarListaDePresença(ArrayList<Aluno> alunos) {
+	public void criarListaDePresenca(ArrayList<Aluno> alunos) {
 		System.out.println("Entrou no metodo lista de presenca da classe professor");
 		return;
 	}
