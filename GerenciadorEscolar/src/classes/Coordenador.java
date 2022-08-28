@@ -43,9 +43,10 @@ public class Coordenador {
 		return;
 	}
 	
-	public void criaDisciplina(String nome, Professor professor, PlanoPedagogico planoPedagogico) {
+	public Disciplina criaDisciplina(String nome, Professor professor, PlanoPedagogico planoPedagogico) {
 		System.out.println("Entrou no metodo criar disciplina na classe coordenador");
-		return;
+		Disciplina disc = new Disciplina(nome, professor, planoPedagogico);
+		return disc;
 	}
 	
 	public Aluno removeAluno(String cpf) {

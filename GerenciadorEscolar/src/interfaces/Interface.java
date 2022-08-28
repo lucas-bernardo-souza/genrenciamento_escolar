@@ -17,7 +17,7 @@ public class Interface {
 		//controladorCord = new Controlador(c);
 		//controladorProf = new Controlador(p);
 		//controladorAlu = new Controlador(alu);
-          controlador = new Controlador(c, p, alu);
+          controlador = new Controlador(c);
 	}
 	
 	public void menuCoordenador() {
@@ -40,16 +40,16 @@ public class Interface {
 			switch(opcao) {
 			case 1:
 				//controladorCord.cadastrarAluno(null, null, null);
-                                controlador.cadastrarAluno(null, null, null);
+                controlador.cadastrarAluno("João Victor Santos", "111.111.111-11", "Registro-1");
 				break;
 			case 2:
-				controlador.cadastrarProfessor(null, null, null, null);
+				controlador.cadastrarProfessor("Wilson Romano", "222.222.222-22", "Biologicas", "Bacharelado");
 				break;
 			case 3:
 				controlador.cadastrarPlanoPedagogico(0);
 				break;
 			case 4:
-				controlador.cadastrarDisciplina(null, null, null);
+				controlador.cadastrarDisciplina(null, "222.222.222-22", null);
 				break;
 			case 5:
 				controlador.removeAluno(null);
@@ -81,22 +81,22 @@ public class Interface {
 			opcao = input.nextInt();
 			switch(opcao) {
 			case 1:
-				controlador.registrarAula(null, null, null);
+				controlador.registrarAula(null, null, null, null, null);
 				break;
 			case 2:
-				controlador.criarAtivida(null, null, null);
+				controlador.criarAtivida(null, null, null, null, null, null);
 				break;
 			case 3:
-				controlador.criarListaDePresenca(null);
+				controlador.criarListaDePresenca(null, null);
 				break;
 			case 4:
-				controlador.fazerComentarioPublico(null, null);
+				controlador.fazerComentarioPublico(null, null, null);
 				break;
 			case 5:
-				controlador.comentarioPrivado(null, null, null, null);
+				controlador.comentarioPrivado(null, null, null, null, null);
 				break;
 			case 6:
-				controlador.consultaDisciplina(null);
+				controlador.consultaDisciplina(null, null);
 				break;
 			}
 		}
@@ -122,19 +122,19 @@ public class Interface {
 			switch(opcao) {
 			
 			case 1:
-				controlador.concluirAtividade();
+				controlador.concluirAtividade("111.111.111-11");
 				break;
 			case 2:
-				controlador.consultarDisciplinasMatriculadas();
+				controlador.consultarDisciplinasMatriculadas("111.111.111-11");
 				break;
                         case 3:
-                                controlador.consultarAtividades();
+                                controlador.consultarAtividades("111.111.111-11");
                                 break;
                         case 4:
-                                controlador.consultarNotas();
+                                controlador.consultarNotas("111.111.111-11");
                                 break;
                         case 5:
-                                controlador.consultarFaltas();
+                                controlador.consultarFaltas("111.111.111-11");
                                 break;
 			}
 		}
@@ -175,7 +175,7 @@ public class Interface {
                                 this.menuAluno();
                                 break;
                         case 6:
-                                controlador.inscreverEmDisciplina(null);
+                                controlador.inscreverEmDisciplina(null, null);
                                 break;
 			}
 		}

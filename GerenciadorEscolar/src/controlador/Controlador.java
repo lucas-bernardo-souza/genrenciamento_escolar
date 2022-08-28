@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import classes.Aluno;
-import classes.Atividade;
-import classes.Aula;
 import classes.Coordenador;
 import classes.Disciplina;
 import classes.PlanoPedagogico;
@@ -16,22 +14,16 @@ public class Controlador {
 	private ControladorCoordenador ctrlCoordenador;
 	private ControladorProfessor ctrlProfessor;
 	private ControladorAluno ctrlAluno;
+	private Aluno aluno;
+	private Professor professor;
+	private Disciplina disciplina;
 //    private ArrayList<Disciplina> disciplinas;
-        
-        public Controlador(Coordenador coordenador) {
-        	ctrlCoordenador = new ControladorCoordenador(coordenador);
-        }
-	
-        public Controlador(Coordenador coordenador, Professor professor) {
-            ctrlCoordenador = new ControladorCoordenador(coordenador);
-            ctrlProfessor = new ControladorProfessor(professor);
-        }
-        
-        public Controlador(Coordenador coordenador, Professor professor, Aluno aluno) {
-            ctrlCoordenador = new ControladorCoordenador(coordenador);
-            ctrlProfessor = new ControladorProfessor(professor);
-            ctrlAluno = new ControladorAluno(aluno);
-        }
+    
+    public Controlador(Coordenador coordenador) {
+        ctrlCoordenador = new ControladorCoordenador(coordenador);
+        ctrlProfessor = new ControladorProfessor();
+        ctrlAluno = new ControladorAluno();
+    }
         /*
 	public Controlador(Coordenador coordenador) {
 		this.coordenador = coordenador;
@@ -45,16 +37,20 @@ public class Controlador {
 		this.aluno = aluno;
 	}
 	*/
-	public Aluno cadastrarAluno(String nome, String cpf, String registroEscolar) {
-		return ctrlCoordenador.cadastrarAluno(nome, cpf, registroEscolar);
+	public void cadastrarAluno(String nome, String cpf, String registroEscolar) {
+		aluno = ctrlCoordenador.cadastrarAluno(nome, cpf, registroEscolar);
+		ctrlAluno.addAluno(aluno);
 	}
 	
-	public Professor cadastrarProfessor(String nome, String cpf, String area, String titulacao) {
-		return ctrlCoordenador.cadastrarProfessor(nome, cpf, area, titulacao);
+	public void cadastrarProfessor(String nome, String cpf, String area, String titulacao) {
+		professor = ctrlCoordenador.cadastrarProfessor(nome, cpf, area, titulacao);
+		ctrlProfessor.addProfessor(professor);
 	}
 	
-	public void cadastrarDisciplina(String nome, Professor professor, PlanoPedagogico planoPedagogico) {
-		ctrlCoordenador.cadastrarDisciplina(nome, professor, planoPedagogico);
+	public void cadastrarDisciplina(String nome, String cpfProfessor, PlanoPedagogico planoPedagogico) {
+		professor = ctrlProfessor.buscaProfessor(cpfProfessor);
+		disciplina = ctrlCoordenador.cadastrarDisciplina(nome, professor, planoPedagogico);
+		ctrlProfessor.cadastrarDisciplina(disciplina);
 	}
 	
 	public void cadastrarPlanoPedagogico(int cargahoraria) {
@@ -69,51 +65,51 @@ public class Controlador {
 		ctrlCoordenador.removeProfessor(cpf);
 	}
 	
-	public Aula registrarAula(Date data, String assuntoDaAula, String descricao) {
-		return ctrlProfessor.registrarAula(data, assuntoDaAula, descricao);
+	public void registrarAula(Date data, String assuntoDaAula, String descricao, String cpfProfessor, String nomeDisciplina) {
+		ctrlProfessor.registrarAula(data, assuntoDaAula, descricao, cpfProfessor, nomeDisciplina);
 	}
 	
-	public Atividade criarAtivida(Date dataAtribuicao, Date dataEntrega, String descricao) {
-		return ctrlProfessor.criarAtivida(dataAtribuicao, dataEntrega, descricao);
+	public void criarAtivida(Date dataAtribuicao, Date dataEntrega, String descricao, String cpfProfessor, String nomeDisciplina, String assuntoAula) {
+		ctrlProfessor.criarAtividade(dataAtribuicao, dataEntrega, descricao, cpfProfessor, nomeDisciplina, assuntoAula);
 	}
 	
-	public void criarListaDePresenca(ArrayList<Aluno> alunos) {
-		ctrlProfessor.criarListaDePresenca(alunos);
+	public void criarListaDePresenca(ArrayList<Aluno> alunos, String cpfProfessor) {
+		ctrlProfessor.criarListaDePresenca(alunos, cpfProfessor);
 	}
 	
-	public void fazerComentarioPublico(String comentario, String nomeDisciplina) {
-		ctrlProfessor.fazerComentarioPublico(comentario, nomeDisciplina);
+	public void fazerComentarioPublico(String comentario, String nomeDisciplina, String cpfProfessor) {
+		ctrlProfessor.fazerComentarioPublico(comentario, nomeDisciplina, cpfProfessor);
 	}
 	
-	public void comentarioPrivado(String nomeDisciplina, String deQuem, String paraQuem, String Mensagem) {
-		ctrlProfessor.comentarioPrivado(nomeDisciplina, deQuem, paraQuem, Mensagem);
+	public void comentarioPrivado(String nomeDisciplina, String deQuem, String paraQuem, String Mensagem, String cpfProfessor) {
+		ctrlProfessor.comentarioPrivado(nomeDisciplina, deQuem, paraQuem, Mensagem, cpfProfessor);
 	}
 	
-	public Disciplina consultaDisciplina(String nome) {
-		return ctrlProfessor.consultaDisciplina(nome);
+	public Disciplina consultaDisciplina(String nome, String cpfProfessor) {
+		return ctrlProfessor.consultaDisciplina(nome, cpfProfessor);
 	}
 	
-	public void inscreverEmDisciplina(Disciplina disc) {
-		ctrlAluno.inscreverEmDisciplina(disc);
+	public void inscreverEmDisciplina(Disciplina disc, String cpf) {
+		ctrlAluno.inscreverEmDisciplina(disc, cpf);
 	}
 	
-	public void concluirAtividade() {
-		ctrlAluno.concluirAtividade();
+	public void concluirAtividade(String cpf) {
+		ctrlAluno.concluirAtividade(cpf);
 	}
 	
-	public void consultarDisciplinasMatriculadas(){
-		ctrlAluno.consultarDisciplinasMatriculadas();
+	public void consultarDisciplinasMatriculadas(String cpf){
+		ctrlAluno.consultarDisciplinasMatriculadas(cpf);
 	}
 
-    public void consultarAtividades() {
-        ctrlAluno.consultarAtividades();
+    public void consultarAtividades(String cpf) {
+        ctrlAluno.consultarAtividades(cpf);
     }
 
-    public void consultarNotas() {
-        ctrlAluno.consultarNotas();
+    public void consultarNotas(String cpf) {
+        ctrlAluno.consultarNotas(cpf);
     }
 
-    public void consultarFaltas() {
-        ctrlAluno.consultarFaltas();
+    public void consultarFaltas(String cpf) {
+        ctrlAluno.consultarFaltas(cpf);
     }
 }

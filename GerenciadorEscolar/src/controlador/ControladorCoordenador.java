@@ -2,6 +2,7 @@ package controlador;
 
 import classes.Aluno;
 import classes.Coordenador;
+import classes.Disciplina;
 import classes.PlanoPedagogico;
 import classes.Professor;
 
@@ -20,8 +21,8 @@ public class ControladorCoordenador {
 		return coordenador.criaProfessor(nome, cpf, area, titulacao);
 	}
 	
-	public void cadastrarDisciplina(String nome, Professor professor, PlanoPedagogico planoPedagogico) {
-		coordenador.criaDisciplina(nome, professor, planoPedagogico);
+	public Disciplina cadastrarDisciplina(String nome, Professor professor, PlanoPedagogico planoPedagogico) {
+		return coordenador.criaDisciplina(nome, professor, planoPedagogico);
 	}
 	
 	public void cadastrarPlanoPedagogico(int cargahoraria) {

@@ -54,18 +54,20 @@ public class Professor {
 		return disciplinasMinistradas;
 	}
 
-	public void setDisciplinasMinistradas(ArrayList<Disciplina> disciplinasMinistradas) {
-		this.disciplinasMinistradas = disciplinasMinistradas;
+	public void addDisciplina(Disciplina disciplina) {
+		disciplinasMinistradas.add(disciplina);
 	}
 	
-	public Aula registrarAula(Date data, String assuntoDaAula, String descricao) {
+	public void registrarAula(Date data, String assuntoDaAula, String descricao, String nomeDisciplina) {
 		System.out.println("Entrou no metodo registrar aula da classe professor!");
-		return null;
+		// Adiciona a aula na disciplina
+		return;
 	}
 	
-	public Atividade criarAtivida(Date dataAtribuicao, Date dataEntrega, String descricao) {
+	public void criarAtivida(Date dataAtribuicao, Date dataEntrega, String descricao, String nomeDisciplina, String assuntoAula) {
 		System.out.println("Entrou no metodo criar atividade da classe professor");
-		return null;
+		// Adiciona a atividade na aula
+		return;
 	}
 	
 	public void criarListaDePresenca(ArrayList<Aluno> alunos) {
