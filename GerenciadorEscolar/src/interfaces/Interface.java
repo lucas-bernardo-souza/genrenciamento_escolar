@@ -13,7 +13,7 @@ public class Interface {
 	//private Controlador controladorAlu;
         private final Controlador controlador;
 
-	public Interface(Coordenador c, Professor p, Aluno alu) {
+	public Interface(Coordenador c) {
 		//controladorCord = new Controlador(c);
 		//controladorProf = new Controlador(p);
 		//controladorAlu = new Controlador(alu);
