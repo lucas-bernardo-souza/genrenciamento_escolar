@@ -91,7 +91,11 @@ public class Professor {
 	}
 	
 	public Disciplina consultaDisciplina(String nome) {
-		System.out.println("Entrou no metodo consulta disciplina na classe professor");
+		for(int i = 0; i < disciplinasMinistradas.size(); i++) {
+			if(disciplinasMinistradas.get(i).getNome() == nome) {
+				return disciplinasMinistradas.get(i);
+			}
+		}
 		return null;
 	}
 }

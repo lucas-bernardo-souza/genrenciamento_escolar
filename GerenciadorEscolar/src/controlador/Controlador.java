@@ -89,16 +89,17 @@ public class Controlador {
 		return ctrlProfessor.consultaDisciplina(nome, cpfProfessor);
 	}
 	
-	public void inscreverEmDisciplina(Disciplina disc, String cpf) {
-		ctrlAluno.inscreverEmDisciplina(disc, cpf);
+	public void inscreverEmDisciplina(String disci, String cpfAluno, String cpfProfessor) {
+		Disciplina disc = ctrlProfessor.consultaDisciplina(disci, cpfProfessor);
+		ctrlAluno.inscreverEmDisciplina(disc, cpfAluno);
 	}
 	
 	public void concluirAtividade(String cpf) {
 		ctrlAluno.concluirAtividade(cpf);
 	}
 	
-	public void consultarDisciplinasMatriculadas(String cpf){
-		ctrlAluno.consultarDisciplinasMatriculadas(cpf);
+	public ArrayList<Disciplina> consultarDisciplinasMatriculadas(String cpf){
+		return ctrlAluno.consultarDisciplinasMatriculadas(cpf);
 	}
 
     public void consultarAtividades(String cpf) {

@@ -35,13 +35,13 @@ public class ControladorAluno {
 		aluno.concluirAtividade();
 	}
 	
-	public void consultarDisciplinasMatriculadas(String cpf){
+	public ArrayList<Disciplina> consultarDisciplinasMatriculadas(String cpf){
 		for(int i = 0; i < alunos.size(); i++) {
 			if(alunos.get(i).getCpf() == cpf) {
 				aluno = alunos.get(i);
 			}
 		}
-		aluno.getDisciplinasMatriculadas();
+		return aluno.getDisciplinasMatriculadas();
 	}
 	
 	public void consultarAtividades(String cpf) {
@@ -70,4 +70,5 @@ public class ControladorAluno {
 		}
         aluno.consultarFalta();
     }
+	
 }

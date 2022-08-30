@@ -1,10 +1,10 @@
 package interfaces;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-import classes.Aluno;
 import classes.Coordenador;
-import classes.Professor;
+import classes.Disciplina;
 import controlador.Controlador;
 
 public class Interface {
@@ -49,7 +49,9 @@ public class Interface {
 				controlador.cadastrarPlanoPedagogico(0);
 				break;
 			case 4:
-				controlador.cadastrarDisciplina(null, "222.222.222-22", null);
+				controlador.cadastrarDisciplina("Biologia", "222.222.222-22", null);
+				controlador.cadastrarDisciplina("Matemática", "222.222.222-22", null);
+				controlador.cadastrarDisciplina("Física", "222.222.222-22", null);
 				break;
 			case 5:
 				controlador.removeAluno(null);
@@ -81,7 +83,9 @@ public class Interface {
 			opcao = input.nextInt();
 			switch(opcao) {
 			case 1:
-				controlador.registrarAula(null, null, null, null, null);
+				controlador.registrarAula(null, null, null, null, "Biologia");
+				controlador.registrarAula(null, null, null, null, "Matemática");
+				controlador.registrarAula(null, null, null, null, "Física");
 				break;
 			case 2:
 				controlador.criarAtivida(null, null, null, null, null, null);
@@ -108,12 +112,12 @@ public class Interface {
 		while(opcao != 0) {
 			System.out.println();
 			System.out.println("-------------Menu Aluno-------------");
-			//System.out.println("1: Se inscrever em disciplina");
 			System.out.println("1: Entregar atividade");
 			System.out.println("2: Consultar disciplinas matriculadas");
 			System.out.println("3: Consultar atividade");
 			System.out.println("4: Consultar notas");
 			System.out.println("5: Consultar faltas");
+			System.out.println("6: Se inscrever em disciplina");
 			System.out.println("0: Voltar");
 			System.out.println("------------------------------");
 			System.out.println();
@@ -127,15 +131,18 @@ public class Interface {
 			case 2:
 				controlador.consultarDisciplinasMatriculadas("111.111.111-11");
 				break;
-                        case 3:
-                                controlador.consultarAtividades("111.111.111-11");
-                                break;
-                        case 4:
-                                controlador.consultarNotas("111.111.111-11");
-                                break;
-                        case 5:
-                                controlador.consultarFaltas("111.111.111-11");
-                                break;
+            case 3:
+            	controlador.consultarAtividades("111.111.111-11");
+                break;
+            case 4:
+            	controlador.consultarNotas("111.111.111-11");
+                break;
+            case 5:
+            	controlador.consultarFaltas("111.111.111-11");
+                break;
+            case 6:
+            	
+				break;
 			}
 		}
 	}
@@ -147,12 +154,8 @@ public class Interface {
 		while(opcao != 0) {
 			System.out.println();
 			System.out.println("-------------Aluno - Escolher disciplina matriculada-------------");
-			System.out.println("1: Biologia");
-			System.out.println("2: Física");
-			System.out.println("3: Química");
-			System.out.println("4: Matemática");
-			System.out.println("5: Lingua Portuguesa");
-			System.out.println("6: Se inscrever em disciplina");
+			System.out.println("1: Se inscrever em disciplina");
+			System.out.println("2: Visualizar disciplinas");
 			System.out.println("0: Voltar");
 			System.out.println("------------------------------");
 			System.out.println();
@@ -160,23 +163,22 @@ public class Interface {
 			opcao = input.nextInt();
 			switch(opcao) {
 			case 1:
-				this.menuAluno();
+				controlador.inscreverEmDisciplina("Biologia", "111.111.111-11", "222.222.222-22");
+				controlador.inscreverEmDisciplina("Matemática", "111.111.111-11", "222.222.222-22");
+				controlador.inscreverEmDisciplina("Física", "111.111.111-11", "222.222.222-22");
 				break;
 			case 2:
+				ArrayList<Disciplina> disciplinas;
+				int op = 1, j = 1;
+				disciplinas = controlador.consultarDisciplinasMatriculadas("111.111.111-11");
+				System.out.println("Selecione uma disciplina:");
+				for(int i = 0; i < disciplinas.size(); i++) {
+					System.out.println(j + ": " + disciplinas.get(i).getNome());
+					j++;
+				}
+				System.out.println("0: Voltar");
+				op = input.nextInt();
 				this.menuAluno();
-				break;
-			case 3:
-				this.menuAluno();
-				break;
-                        case 4:
-                                this.menuAluno();
-                                break;
-                        case 5:
-                                this.menuAluno();
-                                break;
-                        case 6:
-                                controlador.inscreverEmDisciplina(null, null);
-                                break;
 			}
 		}
         }
